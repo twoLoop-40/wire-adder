@@ -1,16 +1,18 @@
-# This is a sample Python script.
+from adders.half_adder import half_adder
+from schedules.run_agenda import propagate, probe
+from wires import wire
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+input_1 = wire.Wire()
+input_2 = wire.Wire()
+sum_wire = wire.Wire()
+carry = wire.Wire()
 
+probe('sum', sum_wire)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+probe('carry', carry)
 
+half_adder(input_1, input_2, sum_wire, carry)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+input_1.set_signal_value(1)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+propagate()
